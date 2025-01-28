@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px black solid; */
+}
+.form {
+  min-width: 30vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px black solid;
+}
+.form h1 {
+  display: flex;
+  align-items: center;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.input_container {
+  margin: 10px;
+}
+.buttons_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
