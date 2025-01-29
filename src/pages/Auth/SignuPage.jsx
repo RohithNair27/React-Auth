@@ -5,20 +5,26 @@ import AuthStyles from "./Auth.module.css";
 
 import ReactIcon from "../../images/react.svg";
 
+
 import InputField from "../../components/InputField";
 import Button from "../../components/Button";
 
 function SignupPage() {
-  const [isButtonsDisabled, setIsButtonDisabled] = useState(false);
-  let inputRef = useRef(null);
+  const [formData,setFormData] = useState({
+    email: "",
+    password: "",
+    repassword: "",
+  })
 
-  const inputFieldData = [
+  const InputFieldData = [
     {
       id: 1,
       placeholder: "youremail@gmail.com",
       type: "email",
       label: "Enter your email",
       requried: true,
+      valueObjectKey:'email',
+      value:formData.email,
     },
     {
       id: 2,
@@ -26,6 +32,8 @@ function SignupPage() {
       type: "password",
       label: "Enter your password",
       requried: true,
+      value:formData.password,
+      valueObjectKey:'password',
     },
     {
       id: 3,
@@ -33,29 +41,32 @@ function SignupPage() {
       type: "password",
       label: "Re-Enter your password",
       requried: true,
+      value:formData.repassword,
+      valueObjectKey:'repassword',
     },
   ];
-  const buttonOptions = [
+  const buttons = [
     {
       placeholder: "Signup with JWT",
       type: "primary",
-      onClick: () => handleSignup("JWT"),
       className: "btn-primary",
     },
     {
       placeholder: "Signup with cookies",
       type: "secondary",
-      onClick: () => handleSignup("cookies"),
       className: "btn-secondary",
     },
     {
       placeholder: "Signup with OAuth",
       type: "tertiary",
-      onClick: () => handleSignup("OAuth"),
       className: "btn-tertiary",
     },
   ];
 
+  function onChangeText(text,field){
+    console.log(text,field)
+    setFormData({...formData,[field]:text})
+  }
   return (
     <div className={AuthStyles.container}>
       <div className={AuthStyles.form}>
@@ -63,17 +74,9 @@ function SignupPage() {
           React-Auth <img src={ReactIcon} />
         </h1>
         <form>
-          {inputFieldData.map((element) => {
-            return (
-              <InputField
-                placeholder={element.placeholder}
-                type={element.type}
-                label={element.label}
-              />
-            );
-          })}
+
           <div className={AuthStyles.buttons_container}>
-            {buttonOptions.map((element) => {
+            {buttons.map((element) => {
               return <Button placeholder={element.placeholder} />;
             })}
           </div>
